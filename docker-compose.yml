@@ -1,0 +1,47 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+psycopg://svamitrai:${POSTGRES_PASSWORD}@postgis:5432/svamitrai
+      REDIS_URL: redis://redis:6379/0
+      STORAGE_BACKEND: local
+      LOCAL_STORAGE_PATH: /app/data/outputs
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+      CORS_ORIGINS: http://localhost:5173
+    volumes: ["./data:/app/data"]
+    ports: ["8000:8000"]
+    depends_on: [postgis, redis]
+    command: ["sh","-c","alembic -c backend/alembic.ini upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --app-dir backend"]
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.ml-worker
+    environment:
+      DATABASE_URL: postgresql+psycopg://svamitrai:${POSTGRES_PASSWORD}@postgis:5432/svamitrai
+      REDIS_URL: redis://redis:6379/0
+      STORAGE_BACKEND: local
+      LOCAL_STORAGE_PATH: /app/data/outputs
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+    volumes: ["./data:/app/data"]
+    depends_on: [postgis, redis]
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports: ["5173:80"]
+    depends_on: [api]
+  postgis:
+    image: postgis/postgis:17-3.5
+    environment:
+      POSTGRES_USER: svamitrai
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_DB: svamitrai
+    volumes: ["postgis_data:/var/lib/postgresql/data"]
+    ports: ["5432:5432"]
+  redis:
+    image: redis:8-alpine
+    ports: ["6379:6379"]
+volumes:
+  postgis_data:
