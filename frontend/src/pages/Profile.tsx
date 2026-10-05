@@ -1,0 +1,1 @@
+import{Card}from'../components/ui';export default function Profile(){const u=JSON.parse(localStorage.getItem('svamitrai_user')||'{}');return <Card className="p-7"><h1 className="text-2xl font-black">Profile</h1><div className="mt-4">{u.full_name}</div><div>{u.email}</div><div>{u.role}</div></Card>}

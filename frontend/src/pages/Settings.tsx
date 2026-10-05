@@ -1,0 +1,1 @@
+import{Card}from'../components/ui';export default function Settings(){return <Card className="p-7"><h1 className="text-2xl font-black">System Settings</h1><p className="mt-2 text-sm text-slate-500">Configuration is environment-driven on the backend.</p></Card>}

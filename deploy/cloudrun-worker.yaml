@@ -1,0 +1,11 @@
+apiVersion: run.googleapis.com/v1
+kind: Job
+metadata: {name: svamitrai-ml-worker}
+spec:
+  template:
+    template:
+      spec:
+        maxRetries: 2
+        containers:
+          - image: REGION-docker.pkg.dev/PROJECT_ID/svamitrai/ml-worker:TAG
+            command: ["python","scripts/worker.py"]

@@ -1,0 +1,1 @@
+import{Card}from'../components/ui';export default function Exports(){return <Card className="p-7"><h1 className="text-2xl font-black">Exports</h1><p className="mt-2 text-sm text-slate-500">GeoJSON, CSV, Shapefile, GeoPackage, PNG and PDF endpoints are available through the API.</p></Card>}

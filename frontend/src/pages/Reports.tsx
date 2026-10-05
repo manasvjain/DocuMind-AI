@@ -1,0 +1,1 @@
+import{Card}from'../components/ui';export default function Reports(){return <Card className="p-7"><h1 className="text-2xl font-black">Reports</h1><p className="mt-2 text-sm text-slate-500">Generate PDF reports from live project records via the backend export API.</p></Card>}

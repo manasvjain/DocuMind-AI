@@ -1,0 +1,24 @@
+image_dir: data/demo/images
+mask_dir: data/demo/masks
+output_dir: data/models
+model: unet
+encoder: compact
+num_classes: 6
+image_size: 256
+batch_size: 4
+learning_rate: 0.001
+epochs: 10
+seed: 42
+val_fraction: 0.2
+patience: 3
+loss: dice_ce
+scheduler: cosine
+mixed_precision: true
+num_workers: 0
+augmentation:
+  horizontal_flip: true
+  vertical_flip: true
+  rotation: true
+  random_crop: true
+  brightness_contrast: true
+  noise: false

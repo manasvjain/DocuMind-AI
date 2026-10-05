@@ -1,0 +1,8 @@
+{
+  "name": "SVAMITRAI Synthetic Demo Dataset",
+  "status": "DEMO ONLY",
+  "source": "Generated locally by scripts/generate_demo_dataset.py; not survey/cadastral data.",
+  "crs": "EPSG:32643",
+  "pixel_size_m": 0.5,
+  "classes": {"0":"background","1":"building","2":"road","3":"water","4":"vegetation","5":"candidate parcel"}
+}

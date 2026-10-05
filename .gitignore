@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+.env
+*.db
+# Node
+node_modules/
+dist/
+.vite/
+# Runtime artifacts
+data/outputs/*
+data/models/*.pt
+data/models/*.pth
+# IDE/logs
+.vscode/
+.idea/
+*.log

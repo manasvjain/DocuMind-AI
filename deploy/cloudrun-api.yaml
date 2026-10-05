@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata: {name: svamitrai-api}
+spec:
+  template:
+    spec:
+      containers:
+        - image: REGION-docker.pkg.dev/PROJECT_ID/svamitrai/api:TAG
+          ports: [{containerPort: 8000}]
+          env:
+            - {name: ENVIRONMENT, value: production}
+            - {name: STORAGE_BACKEND, value: gcs}
+            - {name: GOOGLE_CLOUD_PROJECT, value: PROJECT_ID}
+            - {name: GCS_BUCKET, value: REPLACE_WITH_BUCKET}

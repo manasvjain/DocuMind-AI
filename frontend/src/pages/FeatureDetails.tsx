@@ -1,0 +1,1 @@
+import{Card}from'../components/ui';export default function FeatureDetails(){return <Card className="p-7"><h1 className="text-2xl font-black">Feature Details</h1><p className="mt-2 text-sm text-slate-500">Feature attributes are supplied from the live GIS API.</p></Card>}
