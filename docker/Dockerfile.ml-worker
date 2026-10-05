@@ -1,0 +1,7 @@
+FROM python:3.13-slim
+WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential gdal-bin libgdal-dev libgeos-dev libproj-dev && rm -rf /var/lib/apt/lists/*
+COPY backend/requirements.txt /app/backend/requirements.txt
+RUN pip install --no-cache-dir -r /app/backend/requirements.txt
+COPY . /app
+CMD ["python","scripts/worker.py"]
